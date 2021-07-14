@@ -1,5 +1,5 @@
-replicaCount: 3
-dbReplicaCount: 3
+replicaCount: 2
+dbReplicaCount: 2
 image:
   tag: latest
   dbTag: 3.3
@@ -13,18 +13,18 @@ rbac:
   enabled: true
 resources:
   limits:
-   cpu: 0.2
+   cpu: 0.4
    memory: 20Mi
   requests:
-   cpu: 0.1
+   cpu: 0.2
    memory: 10Mi
 dbResources:
   limits:
+    memory: "300Mi"
+    cpu: 0.4
+  requests:
     memory: "200Mi"
     cpu: 0.2
-  requests:
-    memory: "100Mi"
-    cpu: 0.1
 dbPersistence:
   ## If defined, storageClassName: <storageClass>
   ## If set to "-", storageClassName: "", which disables dynamic provisioning
@@ -33,5 +33,6 @@ dbPersistence:
   ##   GKE, AWS & OpenStack)
   ##
   # storageClass: "-"
+  storageClass: "linode-block-storage"
   accessMode: ReadWriteOnce
   size: 2Gi
